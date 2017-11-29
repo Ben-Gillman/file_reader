@@ -8,22 +8,24 @@ class Broker
 {
 private:
     int d_brokerId;
-    const std::string d_brokerName;
+    std::string d_brokerName;
     double d_brokerCommission;
 
 public:
-    Broker() {}
-    Bccount(int id, const std::string name, double commission) {}
+    // Broker() {}
+    Broker(int id, const std::string name, double commission) {
+        d_brokerId = id;
+        d_brokerName = name;
+        d_brokerCommission = commission;
+    }
 
     int getBrokerId() { return d_brokerId; }
     const std::string getBrokerName() const { return d_brokerName; }
-
-    double getBrokerBalance() { return d_brokerBalance; }
-    int changeBrokerBalance(int newBal) { d_brokerBalance = newBal; }
+    double getBrokerCommission() { return d_brokerCommission; }
 
     void print() { std::cout << "broker id: " << d_brokerId << ", name: " 
-                             << d_brokerName << ", balance: " 
-                             << d_brokerBalance << "\n"; 
+                             << d_brokerName << ", commission: " 
+                             << d_brokerCommission << "\n"; 
     }
 };
 

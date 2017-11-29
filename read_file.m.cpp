@@ -3,11 +3,13 @@
 #include <string>
 #include <vector>
 #include "account.h"
+#include "broker.h"
 
 int main()
 {
 
 std::vector<Account> accountVector;
+std::vector<Broker> brokerVector;
 
 // read each line into a vector
 std::ifstream infile("file.txt");
@@ -31,7 +33,7 @@ std::cout << numTrnx << "\n";
 
 // read in accounts
 int accountId;
-std::string name;
+std::string accountName;
 double balance; 
 delim = '|';
 
@@ -40,19 +42,21 @@ for (size_t i = 0; i != numAccount; ++i){
     accountId = std::stoi(line);
     std::cout << accountId << "\n";
     std::getline(infile, line, delim);
-    name = line;
-    std::cout << name << "\n";
+    accountName = line;
+    std::cout << accountName << "\n";
     std::getline(infile, line);
     balance = std::stod(line);
     std::cout << balance << "\n";
 
-    Account acct(accountId, name, balance);
+    Account acct(accountName, balance, accountId);
+    acct.print();
     accountVector.push_back(acct);
 
 }
 
 // read in brokers
 int brokerId;
+std::string brokerName;
 double commission; 
 delim = '|';
 
@@ -61,11 +65,16 @@ for (size_t i = 0; i != numBroker; ++i){
     brokerId = std::stoi(line);
     std::cout << brokerId << "\n";
     std::getline(infile, line, delim);
-    name = line;
-    std::cout << name << "\n";
+    brokerName = line;
+    std::cout << brokerName << "\n";
     std::getline(infile, line);
     commission = std::stod(line);
     std::cout << commission << "\n";
+
+    Broker brk(brokerId, brokerName, commission);
+    brk.print();
+    brokerVector.push_back(brk);
+
 }
 
 // read in transactions

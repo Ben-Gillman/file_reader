@@ -7,13 +7,17 @@
 class Account
 {
 private:
-    int d_accountId;
-    const std::string d_accountName;
+    std::string d_accountName;
     double d_accountBalance;
+    int d_accountId;
 
 public:
     Account() {}
-    Account(int id, const std::string name, double balance) {}
+    Account(const std::string name, double balance, int id) {
+        d_accountName = name;
+        d_accountBalance = balance;
+        d_accountId = id;
+    }
 
     int getAccountId() { return d_accountId; }
     const std::string getAccountName() const { return d_accountName; }
