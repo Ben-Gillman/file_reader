@@ -1,9 +1,14 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
+#include "account.h"
 
 int main()
 {
+
+std::vector<Account> accountVector;
+
 // read each line into a vector
 std::ifstream infile("file.txt");
 if (!infile.good()) {return 1;}
@@ -40,6 +45,10 @@ for (size_t i = 0; i != numAccount; ++i){
     std::getline(infile, line);
     balance = std::stod(line);
     std::cout << balance << "\n";
+
+    Account acct(accountId, name, balance);
+    accountVector.push_back(acct);
+
 }
 
 // read in brokers
@@ -84,7 +93,7 @@ for (size_t i = 0; i != numTrnx; ++i){
     shares = std::stoi(line);
     std::cout << shares << "\n";
     std::getline(infile, line);
-    cost = std: :stod(line);
+    cost = std::stod(line);
     std::cout << cost << "\n";
 
 }
